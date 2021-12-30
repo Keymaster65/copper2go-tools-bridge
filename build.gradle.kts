@@ -11,12 +11,6 @@ java {
     sourceCompatibility = JavaVersion.VERSION_17
 }
 
-sourceSets {
-    main {
-        java.srcDir("src/workflow/java")
-    }
-}
-
 testSets {
     create("systemTest")
 }
@@ -25,9 +19,23 @@ tasks.check {
     dependsOn(tasks.findByName("systemTest"))
 }
 
+tasks.withType<Test> {
+    useJUnitPlatform {
+        includeEngines.add("junit-jupiter")
+        includeEngines.add("jqwik")
+    }
+    systemProperty("logback.configurationFile", "src/systemTest/resources/logback.xml")
+}
+
+sourceSets {
+    main {
+        java.srcDir("src/workflow/java")
+    }
+}
+
 repositories {
     mavenCentral()
-    mavenLocal()
+    mavenLocal() // TODO to be removed after copper2go-api 3 release
 }
 
 license {
@@ -36,14 +44,6 @@ license {
     setSkipExistingHeaders(false)
     exclude("**/*.json")
     exclude("**/test.html")
-}
-
-tasks.withType<Test> {
-    useJUnitPlatform {
-        includeEngines.add("junit-jupiter")
-        includeEngines.add("jqwik")
-    }
-    systemProperty("logback.configurationFile", "src/systemTest/resources/logback.xml")
 }
 
 dependencies {
