@@ -47,7 +47,7 @@ license {
 }
 
 dependencies {
-    implementation("io.github.keymaster65:copper2go-api:2+")
+    implementation("io.github.keymaster65:copper2go-api:3+")
     implementation("org.copper-engine:copper-coreengine:5+")
     implementation("org.slf4j:slf4j-api:2.0.0-alpha5")
     implementation("ch.qos.logback:logback-classic:1.3.0-alpha12")
