@@ -1,0 +1,28 @@
+{
+  "httpPort": "59665",
+  "kafkaHost": "kafka",
+  "kafkaPort": "9092",
+  "maxTickets": "10000",
+  "kafkaReceiverConfigs": {
+    "Manager": {
+      "topic": "targetTopic",
+      "groupId": "bridgeGroup",
+      "workflowName": "Bridge",
+      "majorVersion": "1",
+      "minorVersion": "0"
+    }
+  },
+  "httpRequestChannelConfigs": {
+    "RequestChannel": {
+      "method": "GET",
+      "host": "host.docker.internal",
+      "port": "59999",
+      "path": "/"
+    }
+  },
+  "workflowRepositoryConfig": {
+    "branch": "master",
+    "workflowGitURI": "https://github.com/Keymaster65/copper2go-tools-bridge.git",
+    "workflowBase": "/src/workflow/java"
+  }
+}
