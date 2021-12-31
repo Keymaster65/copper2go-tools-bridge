@@ -57,7 +57,7 @@ class HttpKafkaBridgeTest {
     private void sendViaHttpToKafka(final String payload) throws IOException, InterruptedException, URISyntaxException {
         try (final GenericContainer<?> copper2GoContainerHttpKafkaBridge = Copper2GoContainerControl.start("configHttpKafkaBridge", network)) {
             HttpResponse<String> response = TestHttpClient.post(
-                    UriFactory.create("/copper2go/2/api/request/1.0/Bridge?key=value", copper2GoContainerHttpKafkaBridge),
+                    UriFactory.create("/copper2go/3/api/twoway/1.0/Bridge?key=value", copper2GoContainerHttpKafkaBridge),
                     payload);
             Assertions.assertThat(response.body()).startsWith("{");
             log.info("configHttpKafkaBridge.log:\n{}", copper2GoContainerHttpKafkaBridge.getLogs());
