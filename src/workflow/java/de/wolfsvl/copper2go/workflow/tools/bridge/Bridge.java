@@ -50,14 +50,26 @@ public class Bridge extends Workflow<WorkflowData> {
         this.requestChannelStore = requestChannelStore;
     }
 
+    public void replyError(final String message) {
+        if (getData().getUUID() != null) {
+            replyChannelStore.replyError(getData().getUUID(), message);
+        }
+    }
+
+    public void reply(final String message) {
+        if (getData().getUUID() != null) {
+            replyChannelStore.reply(getData().getUUID(), message);
+        }
+    }
+
     @Override
     public void main() throws Interrupt {
         try {
             logger.info("Begin workflow {} 1.0 with UUID {}.", this.getClass().getSimpleName(), getData().getUUID());
             final String response = callRequestChannel(getData().getPayload(), getData().getAttributes());
-            replyChannelStore.reply(getData().getUUID(), response);
+            reply(response);
         } catch (Exception e) {
-            replyChannelStore.replyError(getData().getUUID(),e.getClass().getSimpleName() + ": " + e.getMessage());
+            replyError(e.getClass().getSimpleName() + ": " + e.getMessage());
             throw new BridgeRuntimeException("Could not process payload: " + getData().getPayload(), e);
         }
         logger.info("Finish workflow {} 1.0.", this.getClass().getSimpleName());
