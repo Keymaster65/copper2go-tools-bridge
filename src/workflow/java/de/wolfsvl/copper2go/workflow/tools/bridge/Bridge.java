@@ -53,7 +53,7 @@ public class Bridge extends Workflow<WorkflowData> {
     @Override
     public void main() throws Interrupt {
         try {
-            logger.info("Begin workflow {} 1.0.", this.getClass().getSimpleName());
+            logger.info("Begin workflow {} 1.0 with UUID {}.", this.getClass().getSimpleName(), getData().getUUID());
             final String response = callRequestChannel(getData().getPayload(), getData().getAttributes());
             replyChannelStore.reply(getData().getUUID(), response);
         } catch (Exception e) {
