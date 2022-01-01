@@ -35,7 +35,6 @@ sourceSets {
 
 repositories {
     mavenCentral()
-    mavenLocal() // TODO to be removed after copper2go-api 3 release
 }
 
 license {
