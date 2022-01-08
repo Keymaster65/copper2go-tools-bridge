@@ -30,18 +30,23 @@ import java.util.Objects;
 public class Copper2GoContainerControl {
 
     private static final Logger log = LoggerFactory.getLogger(Copper2GoContainerControl.class);
+    public static final String COPPER2GO_IMAGE_NAME = "keymaster65/copper2go:latest";
 
     private Copper2GoContainerControl() {
     }
 
-    static GenericContainer<?> start(final String configName, final Network network) throws IOException {
+    static GenericContainer<?> start(
+            final String configName,
+             @SuppressWarnings("SameParameterValue")
+             final Network network
+            ) throws IOException {
         String config = CharStreams.toString(
                 new InputStreamReader(
                         Objects.requireNonNull(HttpKafkaBridgeTest.class.getResourceAsStream(configName + ".json")),
                         StandardCharsets.UTF_8
                 )
         );
-        GenericContainer<?> copper2GoContainer = new GenericContainer<>(DockerImageName.parse("keymaster65/copper2go:latest")) // NOSONAR
+        GenericContainer<?> copper2GoContainer = new GenericContainer<>(DockerImageName.parse(COPPER2GO_IMAGE_NAME)) // NOSONAR
                 .withExposedPorts(59665)
                 .withImagePullPolicy(imageName -> true)
                 .withNetworkAliases("copper2go")

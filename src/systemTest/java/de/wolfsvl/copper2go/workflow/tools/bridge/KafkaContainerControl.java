@@ -35,7 +35,7 @@ class KafkaContainerControl {
     static void start(@SuppressWarnings("SameParameterValue") final Network network) {
         // SonarLint: Use try-with-resources or close this "KafkaContainer" in a "finally" clause.
         // In stop() only
-        KafkaContainerControl.kafka = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:5.5.6")) // NOSONAR
+        KafkaContainerControl.kafka = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:6.2.2")) // NOSONAR
                 .withNetwork(network)
                 .withNetworkAliases("kafka");
         KafkaContainerControl.kafka.start();
