@@ -29,7 +29,7 @@ and change it to your needs.
 #### Start copper2go Container
 Now 
 
-`docker run -d -e C2G_CONFIG="$(cat configHttpKafkaBridge.json)" --pull always  --name copper2go -p 59665:59665 --rm registry.hub.docker.com/keymaster65/copper2go:3`
+`docker run -d -e C2G_CONFIG="$(cat configHttpKafkaBridge.json)" --pull always  --name copper2go -p 59665:59665 --rm registry.hub.docker.com/keymaster65/copper2go:4`
 
 #### Test Payload
 Send data to copper2go using `curl`
