@@ -61,8 +61,8 @@ class HttpKafkaBridgeTest {
                     payload);
             final String body = response.body();
             log.info("Response body: {}", body);
-            Assertions.assertThat(body).startsWith("{");
             log.info("configHttpKafkaBridge.log:\n{}", copper2GoContainerHttpKafkaBridge.getLogs());
+            Assertions.assertThat(body).startsWith("{");
         }
     }
 
