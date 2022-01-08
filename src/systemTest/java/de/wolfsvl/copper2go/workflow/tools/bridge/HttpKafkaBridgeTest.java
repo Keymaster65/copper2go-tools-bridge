@@ -59,7 +59,9 @@ class HttpKafkaBridgeTest {
             HttpResponse<String> response = TestHttpClient.post(
                     UriFactory.create("/copper2go/3/api/twoway/1.0/Bridge?key=value", copper2GoContainerHttpKafkaBridge),
                     payload);
-            Assertions.assertThat(response.body()).startsWith("{");
+            final String body = response.body();
+            log.info("Response body: {}", body);
+            Assertions.assertThat(body).startsWith("{");
             log.info("configHttpKafkaBridge.log:\n{}", copper2GoContainerHttpKafkaBridge.getLogs());
         }
     }
