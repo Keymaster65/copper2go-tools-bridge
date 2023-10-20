@@ -11,6 +11,7 @@
   "workflowRepositoryConfig": {
     "branch": "master",
     "workflowGitURI": "https://github.com/Keymaster65/copper2go-tools-bridge.git",
-    "workflowBase": "/src/workflow/java"
+    "workflowBase": "/src/workflow/java",
+    "checkIntervalMSec": "5000"
   }
 }
