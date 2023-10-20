@@ -2,13 +2,18 @@ plugins {
     java
     jacoco
     id("com.github.hierynomus.license-base") version "0.16.1"
-    id("org.unbroken-dome.test-sets") version "4.0.0"
+    id("org.unbroken-dome.test-sets") version "4.1.0"
 }
 
 apply(plugin = "com.github.hierynomus.license")
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_17
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
 }
 
 testSets {
@@ -46,13 +51,15 @@ license {
 }
 
 dependencies {
-    implementation("io.github.keymaster65:copper2go-api:3.1.0")
+    implementation("io.github.keymaster65:copper2go-api:3.2.1")
 
-    testImplementation("org.testcontainers:testcontainers:1.16.2")
-    testImplementation("org.testcontainers:kafka:1.16.2")
-    testImplementation("org.assertj:assertj-assertions-generator:2.2.1")
+    testImplementation("org.assertj:assertj-assertions-generator:2+")
     testImplementation("net.jqwik:jqwik:1.6.2")
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
     testImplementation("org.mockito:mockito-core:4.2.0")
-    testImplementation("org.mock-server:mockserver-netty:5.11.2")
+
+    testImplementation("org.testcontainers:testcontainers:1.19.1")
+    testImplementation("org.testcontainers:kafka:1.19.1")
+
+    testImplementation("org.mock-server:mockserver-netty:5.15.0")
 }
